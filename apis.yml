@@ -1,7 +1,12 @@
 aid: carvana
-url: https://raw.githubusercontent.com/api-evangelist/carvana/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/carvana/refs/heads/main/apis.yml
 modified: '2026-03-21'
 apis: []
 common:
   - type: Website
     url: https://www.carvana.com
+description: >-
+  Carvana is an e-commerce platform for buying, selling, and financing used cars,
+  allowing customers to complete the entire transaction online and offering home delivery
+  or pickup at distinctive car vending machines.
