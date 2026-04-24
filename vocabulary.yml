@@ -1,0 +1,60 @@
+vocabulary: carvana
+description: >-
+  Controlled vocabulary for the Carvana partner APIs and inventory data
+  product. Defines the core vehicle, inventory, and partner concepts used
+  across the Carvana Partner API, Carvana Collective API, and the AWS Data
+  Exchange Car Sales feed.
+version: '1.0.0'
+concepts:
+  - term: Partner
+    definition: >-
+      An authorized Carvana business partner (rental company, wholesaler,
+      fleet operator) with a developer account and API credentials granting
+      access to inventory endpoints.
+  - term: Vehicle
+    definition: >-
+      A specific used-vehicle listing identified by VIN with year, make,
+      model, trim, mileage, price, and photos.
+  - term: InventoryItem
+    definition: >-
+      A partner-posted vehicle listing in Carvana's catalog with status,
+      location, and availability metadata.
+  - term: Listing
+    definition: >-
+      A consumer-facing representation of an InventoryItem published on
+      carvana.com for buyers.
+  - term: InspectionReport
+    definition: >-
+      The standardized condition and reconditioning report associated with a
+      Carvana-listed vehicle.
+  - term: DeliveryOption
+    definition: >-
+      How a vehicle will be delivered to the buyer — home delivery, vending
+      machine pickup, or hub pickup.
+  - term: VendingMachine
+    definition: >-
+      A Carvana physical pickup tower where buyers can collect their
+      purchased vehicle.
+  - term: FinancingOffer
+    definition: >-
+      A financing offer available to a buyer on a specific vehicle (surfaced
+      by Carvana-owned lending or partner lenders).
+  - term: DataProduct
+    definition: >-
+      Carvana's AWS Data Exchange product delivering aggregated used-car
+      inventory and sales data to subscribers.
+mappings:
+  - term: Vehicle
+    schema_org: schema:Vehicle
+  - term: Listing
+    schema_org: schema:Offer
+  - term: InventoryItem
+    schema_org: schema:Product
+  - term: InspectionReport
+    schema_org: schema:InspectAction
+  - term: VendingMachine
+    schema_org: schema:Place
+  - term: FinancingOffer
+    schema_org: schema:LoanOrCredit
+  - term: DataProduct
+    schema_org: schema:Dataset
