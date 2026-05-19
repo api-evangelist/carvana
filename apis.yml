@@ -92,6 +92,10 @@ apis:
       - type: Documentation
         url: https://www.carvana.com/help/carvana-inventory/where-is-partner-inventory
 common:
+  - type: GitHubOrganization
+    url: https://github.com/carvana
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/carvana
   - type: Website
     url: https://www.carvana.com
   - type: Portal
