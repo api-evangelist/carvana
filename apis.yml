@@ -92,6 +92,10 @@ apis:
       - type: Documentation
         url: https://www.carvana.com/help/carvana-inventory/where-is-partner-inventory
 common:
+  - type: VulnerabilityDisclosure
+    url: security/carvana-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/carvana-domain-security.yml
   - type: GitHubOrganization
     url: https://github.com/carvana
   - type: LinkedIn
