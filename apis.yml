@@ -11,9 +11,21 @@ description: >-
   supports partner-collective workflows, and Carvana also distributes
   inventory data via AWS Data Exchange.
 type: Index
+accessModel:
+  pricing: enterprise
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
 position: Provider
 access: Partner
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/carvana.png
 tags:
   - Automotive
   - E-Commerce
