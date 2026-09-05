@@ -1,0 +1,61 @@
+generated: '2026-09-05'
+method: probed
+status: none
+source: >-
+  Live POST tools/list probes against every Carvana host, plus npm registry search, 2026-09-05
+note: >-
+  Carvana ships no MCP server. tools/list was POSTed to mcp.carvana.com/mcp (host does not
+  resolve to a Carvana service), www.carvana.com/mcp, carvana.com/mcp,
+  api-developer.carvana.com/mcp and api.collective.carvana.com/mcp; none returned a JSON-RPC
+  response. There is no OpenAPI in this repo to derive a candidate tool list from — the Partner API
+  contract is behind the Azure APIM portal sign-in — so no candidate tools are listed. NO MCPServer
+  pointer is emitted.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: probed
+server: null
+tools: []
+probes:
+  - url: https://mcp.carvana.com/mcp
+    method: POST tools/list
+    status: 000
+    result: host does not terminate on a Carvana service (ingress default backend 404)
+  - url: https://www.carvana.com/mcp
+    method: POST tools/list
+    status: 403
+    result: Cloudflare managed challenge
+  - url: https://carvana.com/mcp
+    method: POST tools/list
+    status: 403
+    result: Cloudflare managed challenge
+  - url: https://api-developer.carvana.com/mcp
+    method: POST tools/list
+    status: 404
+    result: Azure APIM developer-portal 404 shell
+  - url: https://api.collective.carvana.com/mcp
+    method: POST tools/list
+    status: 401
+    result: HTTP Basic auth challenge, realm "Collective API Reference"
+  - url: https://api.carvana.com/mcp
+    method: POST tools/list
+    status: 404
+    result: '{"statusCode":404,"message":"Resource not found"}'
+third_party:
+  - name: "@striderlabs/mcp-carvana"
+    url: https://www.npmjs.com/package/@striderlabs/mcp-carvana
+    version: 1.0.0
+    published: '2026-03-14'
+    transport: stdio
+    official: false
+    note: >-
+      An unaffiliated npm package by Strider Labs describing itself as an "MCP connector for
+      Carvana car marketplace". It is NOT published by Carvana, declares no repository, and is not
+      referenced anywhere on carvana.com. It does not make Carvana an MCP provider and is excluded
+      from the deployment block above deliberately.
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com

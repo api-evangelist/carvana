@@ -1,0 +1,86 @@
+# Carvana Used Car Buying Guides
+
+> Research guides for buying a used car: trim-level comparisons, generation
+> timelines, and year-by-year changes for 629 models across 42
+> makes - over 6,700 pages for model years 2009-2027, each linked to live Carvana inventory.
+
+Pages follow a hub-and-spoke structure per model:
+
+- Make directories: `/buy/{make}/` (e.g. `/buy/honda/`) - every covered model for a make
+- Model hubs: `/buy/{make}-{model}/` (e.g. `/buy/honda-civic/`) - identity, strengths, generations, owner reviews
+- Trim comparisons: `/buy/{make}-{model}/trims-compare/` - every trim level explained and compared
+- Model years: `/buy/{year}-{make}-{model}/` (e.g. `/buy/2024-honda-civic/`) - what changed that year
+
+Guides regenerate daily; this index was built 2026-08-13.
+
+## Makes
+
+- [Acura](https://www.carvana.com/buy/acura)
+- [Alfa Romeo](https://www.carvana.com/buy/alfa-romeo)
+- [Audi](https://www.carvana.com/buy/audi)
+- [BMW](https://www.carvana.com/buy/bmw)
+- [Buick](https://www.carvana.com/buy/buick)
+- [Cadillac](https://www.carvana.com/buy/cadillac)
+- [Chevrolet](https://www.carvana.com/buy/chevrolet)
+- [Chrysler](https://www.carvana.com/buy/chrysler)
+- [Dodge](https://www.carvana.com/buy/dodge)
+- [FIAT](https://www.carvana.com/buy/fiat)
+- [Ford](https://www.carvana.com/buy/ford)
+- [GMC](https://www.carvana.com/buy/gmc)
+- [Genesis](https://www.carvana.com/buy/genesis)
+- [Honda](https://www.carvana.com/buy/honda)
+- [Hyundai](https://www.carvana.com/buy/hyundai)
+- [INEOS](https://www.carvana.com/buy/ineos)
+- [INFINITI](https://www.carvana.com/buy/infiniti)
+- [Jaguar](https://www.carvana.com/buy/jaguar)
+- [Jeep](https://www.carvana.com/buy/jeep)
+- [Kia](https://www.carvana.com/buy/kia)
+- [Land Rover](https://www.carvana.com/buy/land-rover)
+- [Lexus](https://www.carvana.com/buy/lexus)
+- [Lincoln](https://www.carvana.com/buy/lincoln)
+- [Lucid](https://www.carvana.com/buy/lucid)
+- [MINI](https://www.carvana.com/buy/mini)
+- [Maserati](https://www.carvana.com/buy/maserati)
+- [Mazda](https://www.carvana.com/buy/mazda)
+- [Mercedes-Benz](https://www.carvana.com/buy/mercedes-benz)
+- [Mitsubishi](https://www.carvana.com/buy/mitsubishi)
+- [Nissan](https://www.carvana.com/buy/nissan)
+- [Polestar](https://www.carvana.com/buy/polestar)
+- [Porsche](https://www.carvana.com/buy/porsche)
+- [Ram](https://www.carvana.com/buy/ram)
+- [Rivian](https://www.carvana.com/buy/rivian)
+- [Scion](https://www.carvana.com/buy/scion)
+- [Subaru](https://www.carvana.com/buy/subaru)
+- [Tesla](https://www.carvana.com/buy/tesla)
+- [Toyota](https://www.carvana.com/buy/toyota)
+- [VinFast](https://www.carvana.com/buy/vinfast)
+- [Volkswagen](https://www.carvana.com/buy/volkswagen)
+- [Volvo](https://www.carvana.com/buy/volvo)
+- [smart](https://www.carvana.com/buy/smart)
+
+## Popular models
+
+- [Honda Civic](https://www.carvana.com/buy/honda-civic): Balanced compact bringing lively responses and easy living
+- [Chevrolet Equinox](https://www.carvana.com/buy/chevrolet-equinox): Everyday family hauler with comfy ride, tech, and safety
+- [Nissan Altima](https://www.carvana.com/buy/nissan-altima): Everyday comfort and efficiency with extra bad-weather poise
+- [Hyundai Elantra](https://www.carvana.com/buy/hyundai-elantra): Feature-rich compact focused on value, space and efficiency
+- [Ford Fusion](https://www.carvana.com/buy/ford-fusion): Versatile choice with gas or electrified powertrains
+- [Toyota Corolla](https://www.carvana.com/buy/toyota-corolla): Time-tested choice for efficient and low-stress everyday driving
+- [Nissan Rogue](https://www.carvana.com/buy/nissan-rogue): Passenger-friendly comfort with roomy seating and storage
+- [Toyota Camry](https://www.carvana.com/buy/toyota-camry): Dependable efficiency for relaxed, worry-free commuting
+- [Honda Accord](https://www.carvana.com/buy/honda-accord): Balanced comfort and polish with efficient, family-ready space
+- [Ford Escape](https://www.carvana.com/buy/ford-escape): Adaptable layout with flexible cargo and wide powertrain choices
+- [Jeep Cherokee](https://www.carvana.com/buy/jeep-cherokee): Confident family ride pairing rough-road ability with tech
+- [Nissan Sentra](https://www.carvana.com/buy/nissan-sentra): Polished commuter with upscale feel, safety features and room
+- [Hyundai Sonata](https://www.carvana.com/buy/hyundai-sonata): Striking design, rich tech and mileage-focused efficiency
+- [GMC Terrain](https://www.carvana.com/buy/gmc-terrain): Style-forward ride with cushy feel and high-tech cabin
+- [Ford Focus](https://www.carvana.com/buy/ford-focus): Lively road manners plus handy features and flexible space
+- [Chevrolet Cruze](https://www.carvana.com/buy/chevrolet-cruze): Quiet-riding compact favoring comfort, mileage and tech
+- [Honda CR-V](https://www.carvana.com/buy/honda-cr-v): Family-ready space, smooth ride, and long-term dependability
+- [BMW 3 Series](https://www.carvana.com/buy/bmw-3-series): Benchmark balance of sporty response, tech, and daily ease
+- [Buick Encore](https://www.carvana.com/buy/buick-encore): Compact calm ride ideal for city errands and tight spots
+- [Volkswagen Jetta](https://www.carvana.com/buy/volkswagen-jetta): Polished commuter feel with turbo efficiency and calm ride
+
+## Optional
+
+- [Sitemap](https://www.carvana.com/buy/sitemap.xml): every page with lastmod dates

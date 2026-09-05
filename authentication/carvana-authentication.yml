@@ -1,0 +1,94 @@
+generated: '2026-09-05'
+method: probed
+source: >-
+  Live HTTP probes of api-developer.carvana.com, api.collective.carvana.com and api.carvana.com,
+  2026-09-05. No OpenAPI securitySchemes exist to derive from — Carvana publishes no machine-readable
+  contract — so every entry below is either an OBSERVED response header or is explicitly marked as a
+  platform default that was not observed.
+note: >-
+  Carvana operates two authenticated API surfaces and one bare gateway. Neither surface publishes an
+  OAuth or OpenID discovery document; /.well-known/openid-configuration and
+  /.well-known/oauth-authorization-server 404 (or 401) on every host. There is no public scope
+  reference, so scopes/ is deliberately not written.
+schemes:
+  - id: apim-portal-account
+    api: carvana:partner-api
+    host: api-developer.carvana.com
+    type: portal-account
+    observed: true
+    evidence:
+      - url: https://api-developer.carvana.com/signin
+        status: 200
+        note: Azure API Management developer-portal sign-in page
+      - url: https://api-developer.carvana.com/signup
+        status: 200
+        note: Azure API Management developer-portal sign-up page
+      - url: https://api-developer.carvana.com/developer/apis?api-version=2022-04-01-preview
+        status: 200
+        note: >-
+          The portal's own management proxy answers anonymously with {"value":[],"nextLink":null}.
+          Zero APIs and zero products are visible without an account, which is the concrete proof
+          that the whole Partner API catalog is authorization-gated rather than merely undocumented.
+    description: >-
+      An account on the Carvana developer portal is the first gate. The portal states the API
+      "requires authorization by Carvana LLC" — sign-up alone does not grant access; Carvana must
+      approve the partner.
+  - id: apim-subscription-key
+    api: carvana:partner-api
+    type: apiKey
+    in: header
+    name: Ocp-Apim-Subscription-Key
+    observed: false
+    basis: azure-apim-platform-default
+    evidence:
+      - url: https://api-developer.carvana.com/
+        status: 200
+        note: >-
+          Page identifies itself as "Microsoft Azure API Management - developer portal" and links
+          /products, the Azure APIM subscription surface.
+    description: >-
+      NOT OBSERVED on a live Carvana gateway response. Azure API Management issues a per-product
+      subscription key sent as Ocp-Apim-Subscription-Key (or ?subscription-key=), and Carvana's
+      portal is a stock Azure APIM portal, so this is the expected credential — but no anonymous
+      request has ever been answered by a Carvana APIM gateway, so it is recorded as a platform
+      default and not as a documented Carvana fact. Confirm at partner onboarding.
+  - id: collective-http-basic
+    api: carvana:collective-api
+    host: api.collective.carvana.com
+    type: http
+    scheme: basic
+    observed: true
+    realm: Collective API Reference
+    evidence:
+      - url: https://api.collective.carvana.com/
+        status: 401
+        header: 'WWW-Authenticate: Basic realm="Collective API Reference", charset="UTF-8"'
+        note: >-
+          Every path on this host — including invented ones — answers 401 with this header. The realm
+          name is itself the finding: a document titled "Collective API Reference" exists behind HTTP
+          Basic auth. The reference is published, it is simply not public.
+    description: >-
+      HTTP Basic authentication guards the entire Collective host, documentation included. This is a
+      shared-credential scheme with no scopes, no token endpoint and no rotation surface exposed to
+      the client.
+  - id: gateway-unauthenticated-404
+    host: api.carvana.com
+    type: none
+    observed: true
+    evidence:
+      - url: https://api.carvana.com/v1/vehicles
+        status: 404
+        body: '{"statusCode":404,"message":"Resource not found"}'
+        note: >-
+          A live JSON gateway not declared in apis.yml. It answers every path with the same 404 and
+          never challenges for a credential, so no authentication scheme can be attributed to it.
+    description: >-
+      Recorded for completeness. No credential is requested and no route is reachable anonymously.
+absent:
+  - oauth2
+  - openIdConnect
+  - mutualTLS
+  - published_scope_reference
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com

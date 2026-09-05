@@ -1,0 +1,248 @@
+generated: '2026-09-05'
+method: probed
+source: live HTTPS probes of every host in apis.yml (registrable domain, www, each API baseURL
+  host, the developer-portal host, the investor-relations host) plus the api.carvana.com gateway
+  observed during contract discovery
+note: >-
+  Every named /.well-known/ path was probed on every host Carvana's record knows. NOTHING was
+  served. api-developer.carvana.com is an Azure API Management developer portal whose SPA answers
+  a real 404 (3,131-byte shell) for unknown paths; www.carvana.com fronts /.well-known/ with Azure
+  Blob storage, which answers BlobNotFound XML; api.collective.carvana.com answers 401 with
+  `WWW-Authenticate: Basic realm="Collective API Reference"` for every path, so its discovery
+  surface is behind HTTP Basic auth rather than absent. The apex carvana.com 301s every
+  /.well-known/ request to www. Because no path returned a document, NO WellKnown and NO SecurityTxt
+  pointer is emitted — this file records an absence, and an absence must not be scored as a presence.
+hit_count: 0
+path_echo_control: passed
+soft_404_control:
+  path: /.well-known/carvana-negative-control-7f3ab91c.json
+  note: >-
+    A path that cannot exist was requested on every host. Each host answered exactly as it answered
+    the real paths (301 / 404 / 401), so no host is a catch-all that would manufacture a false hit.
+hosts:
+  - host: carvana.com
+    note: apex; 301-redirects every /.well-known/ request to www.carvana.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 301
+        file: null
+      - path: /.well-known/openid-configuration
+        status: 301
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 301
+        file: null
+      - path: /.well-known/oauth-protected-resource
+        status: 301
+        file: null
+      - path: /.well-known/api-catalog
+        status: 301
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 301
+        file: null
+      - path: /.well-known/apis.json
+        status: 301
+        file: null
+      - path: /.well-known/aauth-resource.json
+        status: 301
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 301
+        file: null
+      - path: /.well-known/agent.json
+        status: 301
+        file: null
+      - path: /apis.json
+        status: 403
+        file: null
+        note: Cloudflare managed challenge, not a document
+      - path: /.well-known/carvana-negative-control-7f3ab91c.json
+        status: 301
+        file: null
+        note: negative control
+  - host: www.carvana.com
+    note: >-
+      /.well-known/ is served by Azure Blob storage; every miss returns an XML BlobNotFound body,
+      which is an unambiguous negative. /llms.txt and /robots.txt ARE served from this host (see
+      llms/carvana-llms.txt).
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        file: null
+      - path: /.well-known/openid-configuration
+        status: 404
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        file: null
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+        file: null
+      - path: /.well-known/api-catalog
+        status: 404
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        file: null
+      - path: /.well-known/apis.json
+        status: 404
+        file: null
+      - path: /.well-known/aauth-resource.json
+        status: 404
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 404
+        file: null
+      - path: /.well-known/agent.json
+        status: 404
+        file: null
+      - path: /apis.json
+        status: 403
+        file: null
+        note: Cloudflare managed challenge, not a document
+      - path: /.well-known/carvana-negative-control-7f3ab91c.json
+        status: 404
+        file: null
+        note: negative control
+  - host: api-developer.carvana.com
+    note: Azure API Management developer portal; unknown paths return the portal's 404 SPA shell
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        file: null
+      - path: /.well-known/openid-configuration
+        status: 404
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        file: null
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+        file: null
+      - path: /.well-known/api-catalog
+        status: 404
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        file: null
+      - path: /.well-known/apis.json
+        status: 404
+        file: null
+      - path: /.well-known/aauth-resource.json
+        status: 404
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 404
+        file: null
+      - path: /.well-known/agent.json
+        status: 404
+        file: null
+      - path: /apis.json
+        status: 404
+        file: null
+      - path: /.well-known/carvana-negative-control-7f3ab91c.json
+        status: 404
+        file: null
+        note: negative control
+  - host: api.collective.carvana.com
+    note: >-
+      Every path, real or invented, answers 401 with
+      `WWW-Authenticate: Basic realm="Collective API Reference"`. Discovery documents cannot be
+      distinguished from absences on this host without credentials.
+    documents:
+      - path: /.well-known/security.txt
+        status: 401
+        file: null
+      - path: /.well-known/openid-configuration
+        status: 401
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 401
+        file: null
+      - path: /.well-known/oauth-protected-resource
+        status: 401
+        file: null
+      - path: /.well-known/api-catalog
+        status: 401
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 401
+        file: null
+      - path: /.well-known/apis.json
+        status: 401
+        file: null
+      - path: /.well-known/aauth-resource.json
+        status: 401
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 401
+        file: null
+      - path: /.well-known/agent.json
+        status: 401
+        file: null
+      - path: /apis.json
+        status: 401
+        file: null
+      - path: /.well-known/carvana-negative-control-7f3ab91c.json
+        status: 401
+        file: null
+        note: negative control
+  - host: investors.carvana.com
+    note: Q4 Inc. investor-relations platform
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        file: null
+      - path: /.well-known/openid-configuration
+        status: 404
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 403
+        file: null
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+        file: null
+      - path: /.well-known/api-catalog
+        status: 404
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        file: null
+      - path: /.well-known/apis.json
+        status: 404
+        file: null
+      - path: /.well-known/aauth-resource.json
+        status: 404
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 404
+        file: null
+      - path: /.well-known/agent.json
+        status: 404
+        file: null
+      - path: /apis.json
+        status: 404
+        file: null
+      - path: /.well-known/carvana-negative-control-7f3ab91c.json
+        status: 404
+        file: null
+        note: negative control
+  - host: api.carvana.com
+    note: >-
+      Not declared in apis.yml; found during contract discovery. A live JSON gateway that answers
+      every path with {"statusCode":404,"message":"Resource not found"}. No discovery document,
+      no OpenAPI, no MCP endpoint.
+    documents:
+      - path: /openapi.json
+        status: 404
+        file: null
+      - path: /swagger.json
+        status: 404
+        file: null
+      - path: /graphql
+        status: 404
+        file: null
+      - path: /mcp
+        status: 404
+        file: null

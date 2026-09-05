@@ -1,0 +1,53 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  Unauthenticated registry searches of npm (registry.npmjs.org), PyPI, RubyGems and the
+  api-developer.carvana.com developer portal, 2026-09-05
+note: >-
+  Carvana publishes NO first-party client libraries. The Azure API Management developer portal at
+  api-developer.carvana.com offers no SDK downloads, and the only Carvana-named artifact on any
+  public registry is a third-party MCP connector (see third_party below). No `SDKs` pointer is
+  emitted, because emitting one would credit Carvana with client libraries it does not ship.
+official_package_count: 0
+packages: []
+registries_probed:
+  - registry: npm
+    query: carvana
+    url: https://registry.npmjs.org/-/v1/search?text=carvana
+    first_party_hits: 0
+    total_hits: 1
+  - registry: pypi
+    query: carvana
+    url: https://pypi.org/pypi/carvana/json
+    first_party_hits: 0
+    status: 404
+  - registry: rubygems
+    query: carvana
+    url: https://rubygems.org/api/v1/search.json?query=carvana
+    first_party_hits: 0
+    total_hits: 0
+  - registry: github
+    query: Carvana GitHub organizations
+    note: >-
+      github.com/carvana and github.com/CarvanaCorp both exist as GitHub organizations named
+      "Carvana" but hold 0 public repositories and their org pages return HTTP 404 to an
+      unauthenticated visitor. github.com/Carvana-Cloud ("Carvana - IT Cloud Team") renders but
+      self-describes as "a private remote repo for the Carvana Cloud Infrastructure Team" and also
+      publishes 0 repositories. There is no public Carvana source distribution.
+    first_party_hits: 0
+third_party:
+  - language: javascript
+    registry: npm
+    name: "@striderlabs/mcp-carvana"
+    url: https://www.npmjs.com/package/@striderlabs/mcp-carvana
+    version: 1.0.0
+    published: '2026-03-14'
+    official: false
+    publisher: Strider Labs (markswendsen@gmail.com)
+    note: >-
+      "MCP connector for Carvana car marketplace" — published by an unaffiliated third party, not
+      by Carvana. No repository or homepage is declared in its package metadata. Recorded here so a
+      later pass does not mistake it for a first-party SDK.
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com

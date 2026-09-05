@@ -4,48 +4,60 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Carvana
 providerId: carvana
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: false
+modified: '2026-09-05'
+generated: '2026-09-05'
+method: searched
+reconciled: true
+source: >-
+  https://api-developer.carvana.com/ (Azure APIM developer portal, anonymous catalog empty) and
+  live header inspection of api.carvana.com and api.collective.carvana.com, 2026-09-05
 tags:
   - Automotive
   - Partner API
   - Rate Limiting
-description: The Carvana Partner API runs on Microsoft Azure API Management. Numeric per-second / per-minute
-  limits are not publicly documented — they are configured per-subscription in Azure APIM policy and
-  delivered to the partner during onboarding. Default Azure APIM behavior surfaces 429 with Retry-After.
-notes: Azure APIM-backed; concrete rate limits are partner-specific and not in the public portal. Update
-  numeric limits after partner onboarding when the APIM subscription policy is shared.
+limit_count: 0
+description: >-
+  Carvana publishes NO rate limits. The Partner API developer portal exposes zero APIs and zero
+  products to an anonymous visitor, so no product-level throttling policy is readable; the Collective
+  host answers 401 for every path; and the api.carvana.com gateway returns no RateLimit-*,
+  X-RateLimit-* or Retry-After header on any observed response. An honest zero: limits exist
+  somewhere in Carvana's Azure APIM subscription policy, but nothing about them is published, so a
+  partner cannot size an integration before signing.
+notes: >-
+  Supersedes a 2026-05-04 bulk-sweep record that listed two speculative limit entries ("see partner
+  Azure APIM subscription policy", "per AWS Data Exchange subscription terms"). Neither was a
+  published number and the AWS Data Exchange entry rested on a listing that turns out to be
+  third-party (see plans/carvana-plans-pricing.yml). Both removed.
 sources:
   - https://api-developer.carvana.com/
-headers:
-  retryAfter: Retry-After
-  requestId: Ocp-Apim-Trace-Location
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - name: Partner subscription quota / rate
-    scope: subscription-key
-    metric: varies
-    limit: see partner Azure APIM subscription policy
-  - name: AWS Data Exchange consumer entitlements
-    scope: AWS-account
-    metric: varies
-    limit: per AWS Data Exchange subscription terms
-policies:
-  - name: Azure APIM throttling
-    description: Carvana's Partner API is fronted by Azure API Management; product- and subscription-level
-      rate-limit / quota policies emit 429 on breach with a Retry-After header.
-  - name: Subscription-key scoping
-    description: Limits apply per Azure APIM subscription key. Partners with multiple environments should
-      provision separate keys per environment.
-  - name: Exponential backoff
-    description: Clients should retry 429 / 503 responses with exponential backoff and jitter, capped
-      at the Retry-After value.
+  - https://api-developer.carvana.com/developer/apis?api-version=2022-04-01-preview
+limits: []
+headers_observed: []
+headers_probed:
+  - name: RateLimit-Limit
+    seen: false
+  - name: RateLimit-Remaining
+    seen: false
+  - name: RateLimit-Reset
+    seen: false
+  - name: X-RateLimit-Limit
+    seen: false
+  - name: Retry-After
+    seen: false
+evidence:
+  - url: https://api-developer.carvana.com/developer/apis?api-version=2022-04-01-preview
+    status: 200
+    body: '{"value":[],"nextLink":null}'
+    note: >-
+      The developer portal's own management proxy answers anonymously and returns an empty API list,
+      so no APIM product policy — the place an Azure-hosted rate limit would be declared — is
+      readable without an approved partner account.
+  - url: https://api.carvana.com/v1/vehicles
+    status: 404
+    note: No rate-limit headers present on the response.
+  - url: https://api.collective.carvana.com/
+    status: 401
+    note: 'WWW-Authenticate: Basic. No rate-limit headers present on the challenge.'
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com

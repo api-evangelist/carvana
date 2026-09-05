@@ -4,85 +4,53 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Carvana
 providerId: carvana
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: false
+modified: '2026-09-05'
+generated: '2026-09-05'
+method: searched
+reconciled: true
+source: >-
+  https://api-developer.carvana.com/ and https://api-developer.carvana.com/products (Azure APIM
+  developer portal), probed anonymously 2026-09-05
 tags:
   - Automotive
   - E-Commerce
   - Used Cars
-  - Inventory
   - Partner API
-description: Carvana exposes two partner-only API surfaces (Carvana Partner API on Azure APIM at api-developer.carvana.com
-  and Carvana Collective API at api.collective.carvana.com), plus a Car Sales Data product on AWS Data
-  Exchange. The partner APIs are gated behind Carvana LLC authorization and do not publish per-call
-  pricing; the AWS Data Exchange listing is the only externally priced surface and uses the AWS Data
-  Exchange subscription model (publisher sets price; AWS Marketplace handles billing).
-notes: Per-call API pricing for the Partner / Collective APIs is not published — gated to authorized
-  partners only. AWS Data Exchange listing prices are visible only via AWS Marketplace once a subscription
-  request is initiated.
-sources:
-  - https://api-developer.carvana.com/
-  - https://aws.amazon.com/marketplace/pp/prodview-y77x3t6zisn4w
-plans:
-  - id: carvana-partner-api
-    name: Carvana Partner API (Authorized Partners)
-    type: enterprise
-    description: REST API for authorized rental, wholesale, and fleet partners to post and manage Carvana
-      catalog inventory. Requires Carvana LLC authorization.
-    entries:
-      - label: Partner integration access
-        name: partner_access
-        type: subscription
-        metric: contract
-        limit: -1
-        timeFrame: month
-        geo: US
-        unit: 1
-        price: contact sales
-        userMultiplied: false
-    elements:
-      - name: Inventory post / update / delete
-      - name: Azure APIM-issued credentials
-      - name: Partner authorization required
-  - id: carvana-collective-api
-    name: Carvana Collective API
-    type: enterprise
-    description: Partner-collaborative workflow API. Access restricted to authorized Carvana partners.
-    entries:
-      - label: Collective partner access
-        name: collective_access
-        type: subscription
-        metric: contract
-        limit: -1
-        timeFrame: month
-        geo: US
-        unit: 1
-        price: contact sales
-        userMultiplied: false
-    elements:
-      - name: Collective workflow integration
-  - id: carvana-aws-data-exchange
-    name: Carvana Car Sales Data (AWS Data Exchange)
-    type: subscription
-    description: Used-car inventory and sales data product distributed through AWS Data Exchange.
-    entries:
-      - label: AWS Data Exchange subscription
-        name: ade_subscription
-        type: subscription
-        metric: month
-        limit: -1
-        timeFrame: month
-        geo: US
-        unit: 1
-        price: see AWS Data Exchange listing
-        userMultiplied: false
-    elements:
-      - name: AWS Marketplace billing
-      - name: Direct data warehouse delivery
-      - name: Carvana inventory + sales attributes
+plan_count: 0
+plans: []
+description: >-
+  Carvana publishes NO API plans and NO API pricing of any kind. The Azure API Management developer
+  portal that fronts the Partner API renders a "Products" navigation item, but its own management
+  proxy returns {"value":[],"nextLink":null} for both /developer/apis and /developer/products to an
+  anonymous caller — there is not one product, tier, quota or price visible before Carvana LLC
+  approves a partner. The Collective host answers 401 for every path. Access is negotiated
+  bilaterally; there is nothing to compare, budget against, or sign up for online.
+notes: >-
+  CORRECTION 2026-09-05. The 2026-05-04 bulk-sweep record listed three plans, one of which —
+  "Carvana Car Sales Data (AWS Data Exchange)" — was misattributed. That AWS Marketplace listing
+  (prodview-y77x3t6zisn4w) is published by SATURN DATA, a third-party data aggregator
+  (support@saturndatacloud.com, sample data at github.com/saturndatacloud/datasets), not by Carvana.
+  It is a scraped dataset ABOUT Carvana inventory, and crediting Carvana with publishing it would
+  have credited the company with a commercial data product it does not sell. The other two entries
+  were "contact sales" placeholders carrying no published terms, which is a plan_count of 0, not 2.
+evidence:
+  - url: https://api-developer.carvana.com/developer/products?api-version=2022-04-01-preview
+    status: 200
+    body: '{"value":[],"nextLink":null}'
+    note: Zero APIM products visible anonymously — no published tier, quota or price.
+  - url: https://api-developer.carvana.com/
+    status: 200
+    note: >-
+      Portal copy reads "This API requires authorization by Carvana LLC." Sign-up exists; entitlement
+      does not follow from it.
+  - url: https://api.collective.carvana.com/
+    status: 401
+    note: HTTP Basic challenge, realm "Collective API Reference".
+  - url: https://aws.amazon.com/marketplace/pp/prodview-y77x3t6zisn4w
+    status: 200
+    note: >-
+      Seller is Saturn Data, not Carvana. Free subscription, monthly refresh, CSV over AWS Data
+      Exchange. Retained here only as the evidence for the misattribution correction above.
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com

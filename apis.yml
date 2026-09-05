@@ -2,14 +2,17 @@ aid: carvana
 name: Carvana
 description: >-
   Carvana is an e-commerce platform for buying, selling, and financing used
-  cars online, featuring home delivery or pickup at its distinctive car
-  vending machines. Its primary developer-facing integration surface is
-  the Carvana Partner REST API (published on Azure API Management at
-  api-developer.carvana.com) which enables authorized rental companies,
-  wholesalers, and fleet partners to post, update, and manage inventory in
-  Carvana's catalog. A Carvana Collective API (api.collective.carvana.com)
-  supports partner-collective workflows, and Carvana also distributes
-  inventory data via AWS Data Exchange.
+  cars online, with home delivery or pickup at its car vending machines. Its
+  developer-facing surface is the Carvana Partner REST API on Azure API
+  Management at api-developer.carvana.com, which lets authorized rental
+  companies, wholesalers and fleet partners post, update and manage inventory
+  in Carvana's catalog. A second surface, the Carvana Collective API, answers
+  every request with an HTTP Basic challenge whose realm is "Collective API
+  Reference". Both are closed: the portal's own management proxy returns an
+  empty API and product list to anonymous callers, so no contract, product,
+  quota or price is readable until Carvana LLC authorizes a partner. What
+  Carvana does publish for machines is an llms.txt at www.carvana.com/llms.txt
+  and a Bugcrowd-hosted responsible disclosure programme.
 type: Index
 deliveryModel:
   model: saas
@@ -45,7 +48,7 @@ tags:
   - Partner API
   - Fortune 500
 created: '2026-03-21'
-modified: '2026-04-23'
+modified: '2026-09-05'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/carvana/refs/heads/main/apis.yml
 specificationVersion: '0.23'
@@ -87,40 +90,11 @@ apis:
     properties:
       - type: Documentation
         url: https://api.collective.carvana.com/
-  - aid: carvana:aws-data-exchange
-    name: Carvana Car Sales Data (AWS Data Exchange)
-    description: >-
-      Carvana's used-car inventory and sales data product published on AWS
-      Data Exchange for direct subscription and data-warehouse delivery to
-      analytics, pricing, and market-research consumers.
-    humanURL: https://aws.amazon.com/marketplace/pp/prodview-y77x3t6zisn4w
-    tags:
-      - Data Product
-      - AWS Data Exchange
-      - Inventory
-    properties:
-      - type: Listing
-        url: https://aws.amazon.com/marketplace/pp/prodview-y77x3t6zisn4w
-  - aid: carvana:partner-inventory-help
-    name: Carvana Partner Inventory Help Center
-    description: >-
-      Consumer-facing explainer describing how Carvana sources partner
-      inventory (rental fleets and other partners) into the buyer catalog.
-    humanURL: https://www.carvana.com/help/carvana-inventory/where-is-partner-inventory
-    tags:
-      - Partner
-      - Inventory
-      - Consumer
-    properties:
-      - type: Documentation
-        url: https://www.carvana.com/help/carvana-inventory/where-is-partner-inventory
 common:
   - type: VulnerabilityDisclosure
     url: security/carvana-vulnerability-disclosure.yml
   - type: DomainSecurity
     url: security/carvana-domain-security.yml
-  - type: GitHubOrganization
-    url: https://github.com/carvana
   - type: LinkedIn
     url: https://www.linkedin.com/company/carvana
   - type: Website
@@ -130,26 +104,60 @@ common:
     url: https://api-developer.carvana.com/
   - type: Login
     url: https://api-developer.carvana.com/signin
-  - type: Help
+  - type: Support
     url: https://www.carvana.com/help
   - type: Sell
-    url: https://www.carvana.com/sell-car
+    url: https://www.carvana.com/sell-my-car
   - type: Finance
-    url: https://www.carvana.com/finance
+    url: https://www.carvana.com/financing
   - type: VendingMachines
-    url: https://www.carvana.com/vending-machine-locations
+    url: https://www.carvana.com/carvanalocations
   - type: About
-    url: https://www.carvana.com/company/about_us
+    url: https://www.carvana.com/about-us
   - type: InvestorRelations
     url: https://investors.carvana.com
   - type: Careers
     url: https://www.carvana.com/careers
-  - type: Contact
-    url: https://www.carvana.com/help/contact-us
   - type: TermsOfService
     url: https://www.carvana.com/terms-of-use
   - type: PrivacyPolicy
     url: https://www.carvana.com/privacy-policy
+  - type: Partners
+    name: Partner With Us
+    url: https://www.carvana.com/partner-with-us
+  - type: Documentation
+    name: Partner Inventory Help Center
+    url: https://www.carvana.com/help/carvana-inventory/where-is-partner-inventory
+  - type: SignUp
+    name: Carvana Developer Portal sign-up
+    url: https://api-developer.carvana.com/signup
+  - type: Security
+    name: Carvana Responsible Disclosure Policy
+    url: security/carvana-vulnerability-disclosure.yml
+  - type: Authentication
+    url: authentication/carvana-authentication.yml
+  - type: Packages
+    url: packages/carvana-packages.yml
+  - type: LLMsTxt
+    name: Carvana llms.txt
+    url: llms/carvana-llms.txt
+  - type: Plans
+    url: plans/carvana-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/carvana-rate-limits.yml
+  - type: FinOps
+    url: finops/carvana-finops.yml
+  - type: Vocabulary
+    url: vocabulary.yml
+  - type: SpectralRules
+    url: spectral/carvana.spectral.yml
+  - type: JSONLDContext
+    url: json-ld/carvana-context.jsonld
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
+x-enrichment:
+  date: '2026-09-05'
+  status: enriched
+  artifacts_added: 6
+  pass: local-v3

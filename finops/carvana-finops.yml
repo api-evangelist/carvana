@@ -6,22 +6,28 @@ providerId: carvana
 created: '2026-05-04'
 # Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
 # bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
+# Corrected 2026-09-05: the AWS Data Exchange listing this file treated as a Carvana
+# revenue surface is published by Saturn Data, a third party. See plans/carvana-plans-pricing.yml.
 method: generated
-modified: '2026-05-05'
+modified: '2026-09-05'
 reconciled: false
 tags:
   - Automotive
   - Partner API
   - FinOps
   - FOCUS
-description: 'FOCUS-aligned FinOps for Carvana''s partner integration surface. Two billing shapes coexist:
-  partner-negotiated contracts for the Partner / Collective APIs (no public per-call price), and an
-  AWS Data Exchange subscription for Carvana Car Sales Data (priced + invoiced through AWS Marketplace).'
-notes: Partner API pricing is private. AWS Data Exchange listing surfaces actual invoice lines via the
-  AWS Marketplace billing report.
+description: >-
+  FOCUS-aligned FinOps for Carvana's partner integration surface. There is exactly one billing shape:
+  a partner-negotiated contract for the Partner / Collective APIs, with no public per-call price and
+  no self-service tier. Nothing Carvana publishes lets a consumer forecast spend before signing.
+notes: >-
+  Partner API pricing is private and no APIM product is visible anonymously. CORRECTED 2026-09-05: an
+  earlier version of this file treated the AWS Data Exchange listing "Carvana Car Sales for United
+  States" as a Carvana revenue surface. That listing is published by Saturn Data, a third-party
+  aggregator, not by Carvana; its meters have been removed.
 sources:
   - https://api-developer.carvana.com/
-  - https://aws.amazon.com/marketplace/pp/prodview-y77x3t6zisn4w
+  - https://api-developer.carvana.com/developer/products?api-version=2022-04-01-preview
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -31,7 +37,7 @@ alignedWith:
 publisherName: Carvana, LLC
 serviceCategory: Automotive Data + Partner Integration
 billingModel:
-  pricingCategory: Custom (Partner Contract) + AWS Marketplace Subscription
+  pricingCategory: Custom (Partner Contract)
   billingFrequency: Monthly
   billingCurrency: USD
   chargeCategories:
@@ -39,11 +45,11 @@ billingModel:
     - Usage
     - Adjustment
 focusColumns:
-  ServiceName: Carvana Partner / Data APIs
+  ServiceName: Carvana Partner APIs
   ServiceCategory: Automotive Data
   ProviderName: Carvana
   PublisherName: Carvana, LLC
-  InvoiceIssuerName: Carvana, LLC / Amazon Web Services, Inc.
+  InvoiceIssuerName: Carvana, LLC
   BillingCurrency: USD
 meters:
   - name: partner_api_requests
@@ -58,31 +64,20 @@ meters:
     dimensions:
       - partner
       - operation
-  - name: data_exchange_subscription
-    unit: month
-    aggregation: sum
-    dimensions:
-      - product
-  - name: data_exchange_data_delivered
-    unit: GB
-    aggregation: sum
-    dimensions:
-      - product
-      - region
 principles:
   - name: Visibility
-    description: For Partner API, rely on the per-partner reporting Carvana surfaces during onboarding;
-      for AWS Data Exchange, ingest the AWS Marketplace Billing and CUR reports to see Carvana line
-      items.
+    description: Rely on the per-partner reporting Carvana surfaces during onboarding; no anonymous
+      product, quota or price is readable from the developer portal, so spend cannot be modelled
+      before the contract is signed.
   - name: Allocation
-    description: Tag the AWS Marketplace subscription with the consuming product team; allocate Partner
-      API contract fees to the inventory operations function that owns the Carvana relationship.
+    description: Allocate Partner API contract fees to the inventory-operations function that owns the
+      Carvana relationship; there is no per-call meter to allocate against.
   - name: Optimization
-    description: Batch inventory updates rather than polling; subscribe to AWS Data Exchange revisions
-      only for the regions / data fields needed to avoid paying for unused breadth.
+    description: Batch inventory updates rather than polling. With no published rate limits or quotas,
+      negotiate the throttling policy explicitly in the partner agreement.
   - name: Accountability
-    description: Assign a single inventory-operations owner for the Carvana Partner contract and a data-platform
-      owner for the AWS Data Exchange subscription; review monthly Marketplace invoices.
+    description: Assign a single inventory-operations owner for the Carvana Partner contract and review
+      the negotiated terms on renewal.
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
