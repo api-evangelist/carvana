@@ -1,23 +1,21 @@
 ---
 kin_checks:
   slug: carvana
-  schema_version: 0.18.3
-  scored_at: '2026-09-05'
-  run_ts: 2026-09-05T072335
+  schema_version: 0.21.0
+  scored_at: '2026-09-12'
+  run_ts: 2026-09-12T080032
   note: Actionable checks only (missed + partial). earned/na are every other check
-    in rubric/scoring-0.18.3.yml; counts below let you verify that.
+    in rubric/scoring-0.21.0.yml; counts below let you verify that.
   counts:
-    total: 132
-    earned: 19
-    partial: 6
-    missed: 63
+    total: 136
+    earned: 25
+    partial: 3
+    missed: 64
     na: 44
   checks:
-  - id: base_url_per_api
+  - id: multiple_apis
     status: missed
   - id: well_known_published
-    status: missed
-  - id: llms_txt_published
     status: missed
   - id: apis_json_self_hosted
     status: missed
@@ -47,8 +45,6 @@ kin_checks:
     status: missed
   - id: balanced_severities
     status: missed
-  - id: vocabulary_published
-    status: missed
   - id: conformance_declared
     status: missed
   - id: overlay_published
@@ -57,13 +53,15 @@ kin_checks:
     status: missed
   - id: status_page_present
     status: missed
+  - id: rate_limits_documented
+    status: missed
   - id: rate_limits_rich
     status: missed
   - id: deprecation_policy
     status: missed
-  - id: security_disclosure
-    status: missed
   - id: webhooks_advertised
+    status: missed
+  - id: github_org_present
     status: missed
   - id: roadmap_present
     status: missed
@@ -72,8 +70,6 @@ kin_checks:
   - id: api_reference_present
     status: missed
   - id: getting_started_present
-    status: missed
-  - id: authentication_documented
     status: missed
   - id: sdk_count_1
     status: missed
@@ -87,9 +83,11 @@ kin_checks:
     status: missed
   - id: agent_skill_present
     status: missed
-  - id: support_channel
-    status: missed
   - id: blog_present
+    status: missed
+  - id: plans_present
+    status: missed
+  - id: plans_multiple
     status: missed
   - id: pricing_link
     status: missed
@@ -99,9 +97,15 @@ kin_checks:
     status: missed
   - id: reg_oauth_scopes
     status: missed
-  - id: reg_authentication_documented
-    status: missed
   - id: reg_compliance_published
+    status: missed
+  - id: upsert_outcome_discriminator
+    status: missed
+  - id: upsert_alternate_key
+    status: missed
+  - id: upsert_named
+    status: missed
+  - id: upsert_declared_conflict
     status: missed
   - id: spec_presence
     status: missed
@@ -110,8 +114,6 @@ kin_checks:
   - id: reversibility_documented
     status: missed
   - id: mcp_server
-    status: missed
-  - id: auth_clarity
     status: missed
   - id: idempotency
     status: missed
@@ -139,23 +141,14 @@ kin_checks:
     status: missed
   - id: agentic_commerce
     status: missed
-  - id: rate_limits_documented
-    status: partial
-    earned: 2.0
-  - id: github_org_present
-    status: partial
-    earned: 1.0
-    detail: pointer liveness 0.5
-  - id: plans_present
-    status: partial
-    earned: 2.0
-  - id: plans_multiple
-    status: partial
-    earned: 1.0
   - id: sign_up_present
     status: partial
     earned: 2.5
     detail: pointer liveness 0.5
+  - id: auth_clarity
+    status: partial
+    earned: 3.5
+    detail: 'grade: bearer'
   - id: rate_limit_signal
     status: partial
     earned: 3.5
