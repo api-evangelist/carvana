@@ -64,6 +64,10 @@ apis:
     humanURL: https://api-developer.carvana.com/
     baseURL: https://api-developer.carvana.com
     tags:
+      - Partners
+      - Inventory
+      - Authorized Access
+    tags_raw:
       - Partner
       - Inventory
       - Authorized Access
@@ -85,6 +89,9 @@ apis:
     humanURL: https://api.collective.carvana.com/
     baseURL: https://api.collective.carvana.com
     tags:
+      - Partners
+      - Collective
+    tags_raw:
       - Partner
       - Collective
     properties:
