@@ -1,4 +1,4 @@
-# Carvana (carvana)
+# Carvana
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,102 +64,115 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Carvana is an e-commerce platform for buying, selling, and financing used cars online, featuring home delivery or pickup at its distinctive car vending machines. Its primary developer-facing integration surface is the Carvana Partner REST API (published on Azure API Management at api-developer.carvana.com) which enables authorized rental companies, wholesalers, and fleet partners to post, update, and manage inventory in Carvana's catalog. A Carvana Collective API (api.collective.carvana.com) supports partner-collective workflows, and Carvana also distributes inventory data via AWS Data Exchange.
+Carvana is an e-commerce platform for buying, selling, and financing used cars online, with home delivery or pickup at its car vending machines. Its developer-facing surface is the Carvana Partner REST API on Azure API Management at api-developer.carvana.com, which lets authorized rental companies, wholesalers and fleet partners post, update and manage inventory in Carvana's catalog. A second surface, the Carvana Collective API, answers every request with an HTTP Basic challenge whose realm is "Collective API Reference". Both are closed: the portal's own management proxy returns an empty API and product list to anonymous callers, so no contract, product, quota or price is readable until Carvana LLC authorizes a partner. What Carvana does publish for machines is an llms.txt at www.carvana.com/llms.txt and a Bugcrowd-hosted responsible disclosure programme.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/carvana/refs/heads/main/apis.yml)
+**Areas:** Automotive · E-Commerce · Used Cars · Inventory · Partner API · Fortune 500
 
-## Scope
+## Carvana on APIs.io
 
-- **Type:** Index
-- **Position:** Provider
-- **Access:** Partner
+Everything profiled for Carvana is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/carvana/](https://apis.io/providers/carvana/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (2)
 
- - Automotive, E-Commerce, Used Cars, Inventory, Partner API, Fortune 500
+- [Carvana Partner API](https://apis.io/apis/carvana/partner-api/) — REST API that enables deep integration between Carvana and authorized partners (car rental companies, wholesalers, and fleet operators) for posting,…
+- [Carvana Collective API](https://apis.io/apis/carvana/collective-api/) — API surface supporting Carvana Collective partner-collaborative workflows; access is restricted to authorized Carvana partners.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-21
-- **Modified:** 2026-04-23
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### JSON-LD (1)
 
-### Carvana Partner API
+Linked-data contexts for the provider's vocabulary.
 
-REST API that enables deep integration between Carvana and authorized partners (car rental companies, wholesalers, and fleet operators) for posting, updating, and managing used-vehicle inventory. Requires Carvana LLC authorization; the developer portal runs on Microsoft Azure API Management.
+- [Carvana Context](https://apis.io/jsonld/carvana/carvana-context/)
 
-**Human URL:** [https://api-developer.carvana.com/](https://api-developer.carvana.com/)
+#### Security (3)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
- - Partner, Inventory, Authorized Access
+- [Carvana Authentication](https://apis.io/security/carvana/carvana-authentication/)
+- [Carvana Domain Security](https://apis.io/security/carvana/carvana-domain-security/)
+- [Carvana Vulnerability Disclosure](https://apis.io/security/carvana/carvana-vulnerability-disclosure/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [Portal](https://api-developer.carvana.com/)
-- [Login](https://api-developer.carvana.com/signin)
-- [Documentation](https://api-developer.carvana.com/)
+Published plans, tiers and prices.
 
-### Carvana Collective API
+- [Carvana Plans Pricing](https://apis.io/plans/carvana/carvana-plans-pricing/)
 
-API surface supporting Carvana Collective partner-collaborative workflows; access is restricted to authorized Carvana partners.
+#### Rate limits (1)
 
-**Human URL:** [https://api.collective.carvana.com/](https://api.collective.carvana.com/)
+Published request limits.
 
-#### Tags
+- [Carvana Rate Limits](https://apis.io/rate-limits/carvana/carvana-rate-limits/)
 
- - Partner, Collective
+#### FinOps (1)
 
-### Carvana Car Sales Data (AWS Data Exchange)
+What the API costs to run, by operation.
 
-Carvana's used-car inventory and sales data product published on AWS Data Exchange for direct subscription and data-warehouse delivery to analytics, pricing, and market-research consumers.
+- [Carvana Finops](https://apis.io/finops/carvana/carvana-finops/)
 
-**Human URL:** [AWS Marketplace Listing](https://aws.amazon.com/marketplace/pp/prodview-y77x3t6zisn4w)
+## Where to find this API
 
-#### Tags
-
- - Data Product, AWS Data Exchange, Inventory
-
-### Carvana Partner Inventory Help Center
-
-Consumer-facing explainer describing how Carvana sources partner inventory (rental fleets and other partners) into the buyer catalog.
-
-**Human URL:** [Where is Partner Inventory](https://www.carvana.com/help/carvana-inventory/where-is-partner-inventory)
-
-#### Tags
-
- - Partner, Inventory, Consumer
-
-## Use Cases
-
-- Rental and fleet partners programmatically posting end-of-service vehicles into Carvana's inventory with VIN, photos, condition, and price through the Partner API.
-- Bulk updates of partner inventory status (available, reserved, sold, reconditioning) from a partner's fleet-management system.
-- Data-driven used-car analytics via subscription to Carvana's AWS Data Exchange product, joined with macro demand signals in BigQuery/Redshift/Snowflake.
-- Consumer-facing experiences on carvana.com (browsing, financing, delivery scheduling, vending-machine pickup) consuming internal services not publicly exposed as APIs.
-- Investor and analyst workflows via the IR site (earnings, filings, press releases).
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.carvana.com)
-- [Developer Portal](https://api-developer.carvana.com/)
-- [Login](https://api-developer.carvana.com/signin)
-- [Help Center](https://www.carvana.com/help)
-- [Sell a Car](https://www.carvana.com/sell-car)
-- [Finance](https://www.carvana.com/finance)
-- [Vending Machine Locations](https://www.carvana.com/vending-machine-locations)
-- [About](https://www.carvana.com/company/about_us)
-- [Investor Relations](https://investors.carvana.com)
-- [Careers](https://www.carvana.com/careers)
-- [Contact](https://www.carvana.com/help/contact-us)
-- [Terms of Service](https://www.carvana.com/terms-of-use)
-- [Privacy Policy](https://www.carvana.com/privacy-policy)
-- [JSON-LD Context](json-ld/carvana-context.jsonld)
-- [Vocabulary Definition](vocabulary.yml)
-- [Spectral Rules](spectral/carvana.spectral.yml)
+- [Documentation](https://www.carvana.com/help/carvana-inventory/where-is-partner-inventory)
+- [Sign up](https://api-developer.carvana.com/signup)
+- [Support](https://www.carvana.com/help)
+- [Terms of service](https://www.carvana.com/terms-of-use)
+- [Privacy policy](https://www.carvana.com/privacy-policy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
+**Kin Score 26.9** — thin · rubric 0.24.0 · scored 2026-10-20
 
-**Email:** info@apievangelist.com
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 6.7 |
+| Contract governance | 13.6 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 35.7 |
+| Access clarity | 27.6 |
+
+**Agent readiness 5.0** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 30.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/carvana/](https://apis.io/providers/carvana/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Carvana: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/carvana/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
